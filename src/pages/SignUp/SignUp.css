@@ -1,0 +1,26 @@
+.signUp {
+  margin: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signUp .css-pwngrv-MuiPaper-root-MuiCard-root {
+  min-width: 400px;
+}
+
+.cabeseraSignUp {
+  text-align: center;
+}
+
+.signUp .carDispo .carConten .formContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.signUp .carDispo .carConten .formContainer .divBotones {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
