@@ -1,8 +1,9 @@
+import React from "react";
 import "./App.css";
 import routes from "./config/routes";
 
-function App() {
-  return <div className="App">{routes}</div>;
-}
+const App = () => {
+  return <div>{routes}</div>;
+};
 
 export default App;
