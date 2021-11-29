@@ -1,0 +1,35 @@
+.carousel{
+    width: 50%;
+    
+}
+
+.general{
+ 
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+.data{
+    text-align: center;
+
+}
+
+.images{
+
+}
+
+.sigIn{
+    margin-left: 10%;
+    text-align: left;
+    width: 70%;
+}
+
+p{
+    margin-top: 5px;
+    margin-bottom: -2px;
+}
+
+Button{
+    margin-top: 10px;
+    
+}
