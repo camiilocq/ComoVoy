@@ -4,12 +4,12 @@ const Schema = mongoose.Schema
 
 let CourseSchema = Schema ({
     nombre : {type:String, require:true},
-    creditos : {type:Int32Array, require:true},
+    creditos : {type:Number, require:true},
     notas : [
         {
             nota : {type:String, require:true},
-            porcentaje : {type:Float32Array, require:true},
-            calificacion : {type:Float32Array, require:true}
+            porcentaje : {type:Number, require:true},
+            calificacion : {type:Number, require:true}
         }
     ]
 })
