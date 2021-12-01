@@ -57,7 +57,7 @@ const Login = () => {
           </Col>
           <Col span={12}>
             <div className="data">
-              <Title level={2}>¡Bienvenido a Como Voy!</Title>
+              <Title level={2}>¡Bienvenido a Cómo Voy!</Title>
               <Title level={5}>
                 Portal donde encontraras como van tus calificaciones en tiempo
                 real.
