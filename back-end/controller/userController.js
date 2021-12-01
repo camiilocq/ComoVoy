@@ -11,9 +11,9 @@ exports.findAll = (req, res, next) => {
 
 /* finds a user by their id because a get method with id as a parameter*/
 exports.findbyId = (req, res, next) => {
-    User.findById(req.params._id, (err, user) => {
+    User.findById({_id:req.params.userid}, (err, user) => {
         if (err)
-            return next(err)
+            return next(res.status("405").send("the user doesn't exists"))
         res.send(user)
     })
 }
@@ -44,7 +44,7 @@ exports.create = async (req, res, next) => {
 
 /* modify an user by their id*/
 exports.update = async (req, res, next) => {
-    User.findByIdAndUpdate(req.params._id, req.body, (err, user) => {
+    User.findByIdAndUpdate({_id:req.params.userid}, req.body, (err, user) => {
         if (err)
             return next(err)
         res.send(user.nombre + " was succesfully modified")
@@ -53,7 +53,7 @@ exports.update = async (req, res, next) => {
 
 /* deletes an user by their id because of a DELETE method */
 exports.delete = (req, res, next) => {
-    User.findByIdAndDelete(req.params._id, (err, user) => {
+    User.findByIdAndDelete({_id:req.params.userid}, (err, user) => {
         if (err)
             return next(err)
         res.send( user.nombre +  " was eliminated succesfully")

@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 
 let SemesterSchema = Schema ({
     nombre : {type:String, require:true},
-    cursos : [String]
+    userId : {type:String, require:true}
 })
 
 module.exports = mongoose.model('Semester', SemesterSchema)
