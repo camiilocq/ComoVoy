@@ -13,7 +13,7 @@ router.get('/', UserController.findAll)
 /* GET: get an user by id */
 router.get('/:userid', UserController.findbyId);
 
-/* POST: add a new user uses the body*/
+/* POST: add a new user, uses the body*/
 router.post('/', UserController.create)
 
 /* PUT: update an user by mail, uses the body*/
@@ -30,6 +30,9 @@ router.get('/:userid/semesters', SemesterController.findAll)
 
 /* GET: get a semester by id */
 router.get('/:userid/semesters/:semesterId', SemesterController.findbyId);
+
+/* POST: add a new semester, uses the body*/
+router.post('/:userid/semesters/', SemesterController.create)
 
                             /* Course API*/
 /* GET: get all courses*/
