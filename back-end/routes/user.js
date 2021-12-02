@@ -16,10 +16,10 @@ router.get('/:userid', UserController.findbyId);
 /* POST: add a new user, uses the body*/
 router.post('/', UserController.create)
 
-/* PUT: update an user by mail, uses the body*/
+/* PUT: update an user by id, uses the body*/
 router.put('/:userid', UserController.update)
 
-/* DELETE: deletes an user by mail*/
+/* DELETE: deletes an user by id*/
 router.delete('/:userid', UserController.delete)
 
 
@@ -33,6 +33,13 @@ router.get('/:userid/semesters/:semesterId', SemesterController.findbyId);
 
 /* POST: add a new semester, uses the body*/
 router.post('/:userid/semesters/', SemesterController.create)
+
+/* PUT: update a senester by id, uses the body*/
+router.put('/:userid/semesters/:semesterId', SemesterController.update)
+
+/* DELETE: deletes a semester by id*/
+router.delete('/:userid/semesters/:semesterId', SemesterController.delete)
+
 
                             /* Course API*/
 /* GET: get all courses*/

@@ -34,10 +34,6 @@ exports.create = async (req, res, next) => {
     if (userExist){
 
         const semesterExists = await Semester.findOne({semestre:req.body.semestre})
-        //let nombre = semesterExists.semestre
-
-        console.log(semesterExists)
-        //console.log(nombre)
 
         if (!semesterExists){
             
@@ -60,5 +56,38 @@ exports.create = async (req, res, next) => {
         }
     } else {
         return res.status("409").send("the user doesn't exists")
+    }
+}
+
+/* modify a semester by their id*/
+exports.update = async (req, res, next) => {
+
+    const userExist = await User.findById({_id:req.params.userid})
+    
+    if (userExist){
+
+        Semester.findByIdAndUpdate({_id:req.params.semesterId}, req.body, (err, semester) => {
+            if (err)
+                return next(err)
+            res.send(semester.semestre + " was succesfully modified")
+        })
+
+    } else {
+        return res.status("409").send("the user doesn't exists")
+    }
+}
+
+/* deletes an user by their id because of a DELETE method */
+exports.delete = async (req, res, next) => {
+
+    const userExist = await User.findById({_id:req.params.userid})
+    
+    if (userExist){
+
+        Semester.findByIdAndDelete({_id:req.params.semesterId}, (err, semester) => {
+            if (err)
+                return next(err)
+            res.send( semester.semestre +  " was eliminated succesfully")
+        })
     }
 }
