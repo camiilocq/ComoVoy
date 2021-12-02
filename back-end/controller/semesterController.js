@@ -34,10 +34,10 @@ exports.create = async (req, res, next) => {
     if (userExist){
 
         const semesterExists = await Semester.findOne({semestre:req.body.semestre})
-        let nombre = await semesterExists.semestre
+        //let nombre = semesterExists.semestre
 
         console.log(semesterExists)
-        console.log(nombre)
+        //console.log(nombre)
 
         if (!semesterExists){
             
