@@ -23,8 +23,8 @@ const validateMessages = {
 const SignUp = () => {
   const navigate = useNavigate();
    function toLogin(){
-
     return(
+      //Aquí iria agregar el usuario a la BD
       navigate('/')
     )
    }

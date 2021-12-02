@@ -22,6 +22,7 @@ const Login = () => {
   }
 
   function toHome() {
+    //Aquí iria la autentificación para ingresar al login
     return navigate("/home");
   }
 
@@ -36,7 +37,7 @@ const Login = () => {
         <Row>
           <Col span={12}>
             <div className="images">
-            <Image src="../../components/Imgs/logo.webp" />
+            <Image src="" />
             </div>
           </Col>
           <Col span={12}>
@@ -80,12 +81,7 @@ const Login = () => {
                     <Input.Password />
                   </Form.Item>
 
-                  <Form.Item
-                    name="remember"
-                    valuePropName="checked"
-                    wrapperCol={{ offset: 8, span: 16 }}
-                  >
-                    <Checkbox>Remember me</Checkbox>
+                  <Form.Item>
                     <Form.Item
                       label="¿Eres nuevo? ¡Registrate!"
                       name="sign-up"
@@ -106,11 +102,11 @@ const Login = () => {
       <Footer className="information">
         <Row>
           <Col span={13}>
-            Final project of the Advanced Web Programming course, the project
-            was worked during the semester 2021-2. Its purpose is to keep track
-            and be able to visualize in real time the grades of both a course
-            and its entire academic period (court, semester, period, etc.) has
-            Mongo as database engine.
+            Proyecto final de la asignatura de Programación Web Avanzada, el proyecto
+            fue trabajado durante el semestre 2021-2. Su objetivo es llevar un control
+            y poder visualizar en tiempo real las calificaciones tanto de un curso
+            como de todo su periodo académico (tribunal, semestre, periodo, etc.) tiene
+            Mongo como motor de base de datos.
           </Col>
           <Col span={1} />
           <Col span={5}>
