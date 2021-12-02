@@ -4,6 +4,7 @@ import { CalculatorOutlined } from "@ant-design/icons";
 import AppContext from "../../store/AppContext";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import ModalAddSemester from "../../components/ModalAddSemester/ModalAddSemester";
+import ModalAddCourse from "../../components/ModalAddCourse/ModalAddCourse";
 import "./Semestre.css";
 
 const Semestre = () => {
@@ -29,10 +30,17 @@ const Semestre = () => {
           type="primary"
           size="large"
           icon={<CalculatorOutlined />}
+          onClick={() => calculateGrade(record)}
         ></Button>
       ),
     },
   ];
+
+  const calculateGrade = (record) => {
+    state.setCourseSelect(record);
+    state.setGradeSelected(record.notas);
+    state.setSelectionPage(3);
+  };
 
   return (
     <SectionTitle title="Información semestres">
@@ -56,7 +64,9 @@ const Semestre = () => {
           <Button onClick={() => state.setShowModalAddSemester(true)}>
             Agregar semestre
           </Button>
-          <Button>Agregar materia</Button>
+          <Button onClick={() => state.setShowModalAddCourse(true)}>
+            Agregar materia
+          </Button>
         </div>
       </div>
       <hr />
@@ -69,6 +79,7 @@ const Semestre = () => {
         ></Table>
       </div>
       <ModalAddSemester />
+      <ModalAddCourse />
     </SectionTitle>
   );
 };

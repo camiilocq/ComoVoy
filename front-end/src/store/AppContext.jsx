@@ -21,14 +21,31 @@ export const AppContextWrapper = (props) => {
       id_mongo: "n1",
       nombre_materia: "Álgebra lineal",
       num_creditos: 3,
-      notas: [],
+      notas: [
+        {
+          nombre_nota: "Laboratorios",
+          pocentaje: 0.2,
+          calificacion: 4,
+        },
+        {
+          nombre_nota: "Proyecto final",
+          pocentaje: 0.4,
+          calificacion: 4.5,
+        },
+      ],
       id_mongo_semester: "s1",
     },
     {
       id_mongo: "n2",
       nombre_materia: "COE I",
       num_creditos: 2,
-      notas: [],
+      notas: [
+        {
+          nombre_nota: "Escrito I",
+          pocentaje: 0.3,
+          calificacion: 3.7,
+        },
+      ],
       id_mongo_semester: "s1",
     },
     {
@@ -42,9 +59,12 @@ export const AppContextWrapper = (props) => {
 
   const [selectionPage, setSelectionPage] = useState(1);
   const [showModalAddSemester, setShowModalAddSemester] = useState(false);
+  const [showModalAddCourse, setShowModalAddCourse] = useState(false);
   const [semesters, setSemester] = useState(mainSemester);
   const [courses, setCousers] = useState(mainCourses);
   const [semesterSelect, setSemesterSelect] = useState("");
+  const [courseSelect, setCourseSelect] = useState({});
+  const [gradesSelected, setGradeSelected] = useState([]);
 
   const filterCoursesBySemester = (id) => {
     const semesterFilter = courses.filter(
@@ -58,22 +78,48 @@ export const AppContextWrapper = (props) => {
     setSemester(semestersUpdated);
   };
 
+  const addCourse = (newCourse) => {
+    const coursesUpdated = [...courses, newCourse];
+    setCousers(coursesUpdated);
+  };
+
+  const addNota = (newNota) => {
+    const notasNuevas = [...gradesSelected, newNota];
+    setGradeSelected(notasNuevas);
+  };
+
+  const deleteGrade = (id) => {
+    const newGradeList = gradesSelected.filter(
+      (grade) => grade.nombre_nota !== id
+    );
+    setGradeSelected(newGradeList);
+  };
+
   const state = {
     selectionPage,
     setSelectionPage,
     showModalAddSemester,
     setShowModalAddSemester,
+    showModalAddCourse,
+    setShowModalAddCourse,
     semesterSelect,
     setSemesterSelect,
+    courseSelect,
+    setCourseSelect,
     semesters,
     setSemester,
     courses,
     setCousers,
+    gradesSelected,
+    setGradeSelected,
 
     mainUser,
 
     filterCoursesBySemester,
     addSemester,
+    addCourse,
+    addNota,
+    deleteGrade,
   };
 
   return (
