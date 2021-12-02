@@ -3,11 +3,9 @@ import { useNavigate } from "react-router";
 import { Layout } from "antd";
 
 import { Typography } from "antd";
-
-import { Carousel } from "antd";
 import { Row, Col } from "antd";
 import { Form, Input, Button, Checkbox } from "antd";
-
+import { Image } from 'antd';
 import { GithubOutlined } from "@ant-design/icons";
 
 import "./Login.css";
@@ -15,14 +13,7 @@ import "./Login.css";
 const { Title } = Typography;
 const { Header, Footer, Content } = Layout;
 
-const contentStyle = {
-  height: "100%",
-  with: "400px",
-  color: "#fff",
-  lineHeight: "400px",
-  textAlign: "center",
-  background: "#364d79",
-};
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -45,19 +36,12 @@ const Login = () => {
         <Row>
           <Col span={12}>
             <div className="images">
-              <Carousel effect="fade">
-                <div>
-                  <h3 style={contentStyle}>1</h3>
-                </div>
-                <div>
-                  <h3 style={contentStyle}>2</h3>
-                </div>
-              </Carousel>
+            <Image src="../../components/Imgs/logo.webp" />
             </div>
           </Col>
           <Col span={12}>
             <div className="data">
-              <Title level={2}>¡Bienvenido a Como Voy!</Title>
+              <Title level={2}>¡Bienvenido a Cómo Voy!</Title>
               <Title level={5}>
                 Portal donde encontraras como van tus calificaciones en tiempo
                 real.
@@ -110,7 +94,7 @@ const Login = () => {
                   </Form.Item>
                   <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                     <Button type="primary" htmlType="submit" onClick={toHome}>
-                      INGRESAR
+                      Ingresar
                     </Button>
                   </Form.Item>
                 </Form>
