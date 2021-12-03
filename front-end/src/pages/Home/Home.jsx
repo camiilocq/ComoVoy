@@ -4,6 +4,7 @@ import MenuApp from "../../components/ManuApp/MenuApp";
 import TabHeader from "../../components/TabHeader/TabHeader";
 import Semestre from "../Semestre/Semestre";
 import Reporte from "../../pages/Reporte/Reporte";
+import CalcularNota from "../CalcularNota/CalcularNota";
 import AppContext from "../../store/AppContext";
 import "./Home.css";
 
@@ -41,7 +42,13 @@ const Home = () => {
             }}
           >
             <div className="containerDef">
-              {state.selectionPage === 1 ? <Semestre /> : <Reporte />}
+              {state.selectionPage === 1 ? (
+                <Semestre />
+              ) : state.selectionPage === 2 ? (
+                <Reporte />
+              ) : (
+                <CalcularNota />
+              )}
             </div>
           </Content>
         </Layout>

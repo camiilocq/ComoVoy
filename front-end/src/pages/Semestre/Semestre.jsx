@@ -4,6 +4,7 @@ import { CalculatorOutlined } from "@ant-design/icons";
 import AppContext from "../../store/AppContext";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import ModalAddSemester from "../../components/ModalAddSemester/ModalAddSemester";
+import ModalAddCourse from "../../components/ModalAddCourse/ModalAddCourse";
 import "./Semestre.css";
 
 const Semestre = () => {
@@ -29,10 +30,21 @@ const Semestre = () => {
           type="primary"
           size="large"
           icon={<CalculatorOutlined />}
+          onClick={() => calculateGrade(record)}
         ></Button>
       ),
     },
   ];
+
+  const calculateGrade = (record) => {
+    state.setCourseSelect(record);
+    state.setGradeSelected(record.notas);
+    state.setSelectionPage(3);
+  };
+
+  const calcularPromedioSemestre = () => {
+    state.calcularPromedioSemestre();
+  };
 
   return (
     <SectionTitle title="Información semestres">
@@ -53,22 +65,28 @@ const Semestre = () => {
           </Select>
         </div>
         <div className="botones">
+          <Button onClick={calcularPromedioSemestre}>Ver promedio</Button>
           <Button onClick={() => state.setShowModalAddSemester(true)}>
             Agregar semestre
           </Button>
-          <Button>Agregar materia</Button>
+          <Button onClick={() => state.setShowModalAddCourse(true)}>
+            Agregar materia
+          </Button>
         </div>
       </div>
       <hr />
       <div className="semesterTable">
         <h3>Materias</h3>
         <Table
+          size="small"
           columns={colums}
           dataSource={state.filterCoursesBySemester(state.semesterSelect)}
           rowKey="id_mongo"
+          pagination={{ pageSize: 3 }}
         ></Table>
       </div>
       <ModalAddSemester />
+      <ModalAddCourse />
     </SectionTitle>
   );
 };

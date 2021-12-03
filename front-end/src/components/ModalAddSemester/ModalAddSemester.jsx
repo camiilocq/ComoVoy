@@ -14,6 +14,7 @@ const ModalAddSemester = () => {
     const newSemester = {
       id_mongo: date,
       nombre_semestre: date,
+      promedio: 0,
       id_mongo_user: "u1",
     };
     state.addSemester(newSemester);
