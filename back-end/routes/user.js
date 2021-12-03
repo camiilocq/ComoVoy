@@ -42,7 +42,14 @@ router.delete('/:userid/semesters/:semesterId', SemesterController.delete)
 
 
                             /* Course API*/
+
 /* GET: get all courses*/
-router.get('/semesters/courses', CourseController.findAll)
+router.get('/:userid/semesters/:semesterId/courses', CourseController.findAll)
+
+/* GET: get a courses by id*/
+router.get('/:userid/semesters/:semesterId/courses/:courseid', CourseController.findbyId)
+
+/* POST: add a new course, uses the body*/
+router.post('/:userid/semesters/:semesterId/courses', CourseController.create)
 
 module.exports = router;
