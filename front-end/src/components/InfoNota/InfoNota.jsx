@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Button, Input, InputNumber } from "antd";
 import AppContext from "../../store/AppContext";
+import ModalNotaMateria from "../ModalNotaMateria/ModalNotaMateria";
 import "./InfoNota.css";
 
 const InfoNota = () => {
@@ -19,23 +20,9 @@ const InfoNota = () => {
     state.addNota(newNota);
   };
 
-  const formatter = new Intl.NumberFormat("en-US", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
-
   const calcularNota = () => {
-    let nota = 0;
-    let porcentajeRestante = 1;
-    state.gradesSelected.map((grade) => {
-      nota = grade.pocentaje * grade.calificacion + nota;
-      porcentajeRestante = porcentajeRestante - grade.pocentaje;
-      return null;
-    });
-    console.log(formatter.format(nota));
-    console.log(formatter.format(porcentajeRestante));
-    let notaNecesaria = (3 - nota) / porcentajeRestante;
-    console.log(formatter.format(notaNecesaria));
+    state.calcularNotaCurso();
+    state.setShowModalNotaMateria(true);
   };
 
   return (
@@ -70,10 +57,11 @@ const InfoNota = () => {
           />
         </div>
       </div>
-      <div>
+      <div className="botonesInfoNota">
         <Button onClick={addNota}>Agregar</Button>
         <Button onClick={calcularNota}>Calcular nota</Button>
       </div>
+      <ModalNotaMateria />
     </div>
   );
 };

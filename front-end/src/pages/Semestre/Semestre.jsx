@@ -42,6 +42,10 @@ const Semestre = () => {
     state.setSelectionPage(3);
   };
 
+  const calcularPromedioSemestre = () => {
+    state.calcularPromedioSemestre();
+  };
+
   return (
     <SectionTitle title="Información semestres">
       <div className="optionsChoose">
@@ -61,6 +65,7 @@ const Semestre = () => {
           </Select>
         </div>
         <div className="botones">
+          <Button onClick={calcularPromedioSemestre}>Ver promedio</Button>
           <Button onClick={() => state.setShowModalAddSemester(true)}>
             Agregar semestre
           </Button>
@@ -73,9 +78,11 @@ const Semestre = () => {
       <div className="semesterTable">
         <h3>Materias</h3>
         <Table
+          size="small"
           columns={colums}
           dataSource={state.filterCoursesBySemester(state.semesterSelect)}
           rowKey="id_mongo"
+          pagination={{ pageSize: 3 }}
         ></Table>
       </div>
       <ModalAddSemester />

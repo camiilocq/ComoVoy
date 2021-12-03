@@ -52,9 +52,11 @@ const CalcularNota = () => {
       <InfoCourse />
       <hr />
       <Table
+        size="small"
         columns={colums}
         dataSource={state.gradesSelected}
         rowKey="nombre_nota"
+        pagination={{ pageSize: 4 }}
       />
     </SectionTitle>
   );

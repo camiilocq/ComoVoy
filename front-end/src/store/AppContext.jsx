@@ -7,13 +7,24 @@ export const AppContextWrapper = (props) => {
     id_mongo: "u1",
     nombre_completo: "Juan Puerta",
     correo: "juan@gmail.com",
+    promedio_ponderado: 0,
     contraseña: "juan123",
     institucion: "ICESI University",
   };
 
   const mainSemester = [
-    { id_mongo: "s1", nombre_semestre: "2021-02", id_mongo_user: "u1" },
-    { id_mongo: "s2", nombre_semestre: "2022-01", id_mongo_user: "u1" },
+    {
+      id_mongo: "s1",
+      nombre_semestre: "2021-02",
+      promedio: 0,
+      id_mongo_user: "u1",
+    },
+    {
+      id_mongo: "s2",
+      nombre_semestre: "2022-01",
+      promedio: 0,
+      id_mongo_user: "u1",
+    },
   ];
 
   const mainCourses = [
@@ -34,6 +45,7 @@ export const AppContextWrapper = (props) => {
         },
       ],
       id_mongo_semester: "s1",
+      definitiva: 0,
     },
     {
       id_mongo: "n2",
@@ -47,6 +59,7 @@ export const AppContextWrapper = (props) => {
         },
       ],
       id_mongo_semester: "s1",
+      definitiva: 0,
     },
     {
       id_mongo: "n3",
@@ -54,17 +67,26 @@ export const AppContextWrapper = (props) => {
       num_creditos: 4,
       notas: [],
       id_mongo_semester: "s2",
+      definitiva: 0,
     },
   ];
 
   const [selectionPage, setSelectionPage] = useState(1);
   const [showModalAddSemester, setShowModalAddSemester] = useState(false);
   const [showModalAddCourse, setShowModalAddCourse] = useState(false);
+  const [showModalNotaMateria, setShowModalNotaMateria] = useState(false);
+  const [restante, setRestante] = useState(0);
+  const [notaParaGanar, setNotaParaGanar] = useState(0);
   const [semesters, setSemester] = useState(mainSemester);
   const [courses, setCousers] = useState(mainCourses);
   const [semesterSelect, setSemesterSelect] = useState("");
   const [courseSelect, setCourseSelect] = useState({});
   const [gradesSelected, setGradeSelected] = useState([]);
+
+  const formatter = new Intl.NumberFormat("en-US", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
 
   const filterCoursesBySemester = (id) => {
     const semesterFilter = courses.filter(
@@ -95,6 +117,46 @@ export const AppContextWrapper = (props) => {
     setGradeSelected(newGradeList);
   };
 
+  const calcularPromedioSemestre = () => {
+    /** 
+    let promedioDef = 0;
+    let sumaCreditos = 0;
+    let sumaPonderado = 0;
+    console.log(filterCoursesBySemester(semesterSelect));
+
+    filterCoursesBySemester(semesterSelect).map((curso) => {
+      sumaCreditos = curso.num_creditos + sumaCreditos;
+      sumaPonderado = curso.definitiva * curso.num_creditos + sumaPonderado;
+      //return null;
+    });
+    promedioDef = sumaPonderado / sumaCreditos;
+    console.log(promedioDef);
+    setSemesterSelect({
+      ...semesterSelect,
+      promedio: formatter.format(promedioDef),
+    });
+
+    //console.log(semesterSelect);
+    */
+  };
+
+  const calcularNotaCurso = () => {
+    let notaDef = 0;
+    let porcentajeRestanteDef = 1;
+    gradesSelected.map((grade) => {
+      notaDef = grade.pocentaje * grade.calificacion + notaDef;
+      porcentajeRestanteDef = porcentajeRestanteDef - grade.pocentaje;
+      return null;
+    });
+    let notaNecesaria = (3 - notaDef) / porcentajeRestanteDef;
+    setCourseSelect({
+      ...courseSelect,
+      definitiva: formatter.format(notaDef),
+    });
+    setRestante(porcentajeRestanteDef);
+    setNotaParaGanar(formatter.format(notaNecesaria));
+  };
+
   const state = {
     selectionPage,
     setSelectionPage,
@@ -102,6 +164,14 @@ export const AppContextWrapper = (props) => {
     setShowModalAddSemester,
     showModalAddCourse,
     setShowModalAddCourse,
+    showModalNotaMateria,
+    setShowModalNotaMateria,
+
+    restante,
+    setRestante,
+    notaParaGanar,
+    setNotaParaGanar,
+
     semesterSelect,
     setSemesterSelect,
     courseSelect,
@@ -120,6 +190,8 @@ export const AppContextWrapper = (props) => {
     addCourse,
     addNota,
     deleteGrade,
+    calcularPromedioSemestre,
+    calcularNotaCurso,
   };
 
   return (
