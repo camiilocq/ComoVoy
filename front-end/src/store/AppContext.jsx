@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "../config/axios";
 
 const AppContext = React.createContext();
 
@@ -82,6 +83,10 @@ export const AppContextWrapper = (props) => {
   const [semesterSelect, setSemesterSelect] = useState("");
   const [courseSelect, setCourseSelect] = useState({});
   const [gradesSelected, setGradeSelected] = useState([]);
+
+  useEffect(() => {
+    axios.get("users").then((res) => console.log(res));
+  }, []);
 
   const formatter = new Intl.NumberFormat("en-US", {
     minimumFractionDigits: 2,
