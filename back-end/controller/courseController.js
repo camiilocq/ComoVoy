@@ -64,16 +64,17 @@ exports.create = async (req, res, next) => {
 
     console.log(courseExists)
 
-    if (!courseExists){
-            
+    if (courseExists.length==0){
         //creates an user with the information given by the body of the post
         let course = new Course({
-    
-            semestre : req.body.semestre,
-            userId : req.body.userId,
-            promedio : req.body.promedio
+
+            creditos: req.body.creditos,
+            nombre: req.body.nombre,
+            semesterId: req.body.semesterId,
+            definitiva: req.body.definitiva,
+            notas: []
         })
-    
+
         //saves on the db the new user
         course.save(err => {
             if (err)
@@ -81,6 +82,6 @@ exports.create = async (req, res, next) => {
             res.send("Course created succesfully")
         })
     } else {
-        return res.status("418").send("the course already exists")
+        return res.status("418").send("the course already exists")  
     }
 }
