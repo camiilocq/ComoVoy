@@ -65,7 +65,7 @@ exports.create = async (req, res, next) => {
     console.log(courseExists)
 
     if (courseExists.length==0){
-        //creates an user with the information given by the body of the post
+
         let course = new Course({
 
             creditos: req.body.creditos,
@@ -75,7 +75,6 @@ exports.create = async (req, res, next) => {
             notas: []
         })
 
-        //saves on the db the new user
         course.save(err => {
             if (err)
                 return next(err)
@@ -84,4 +83,24 @@ exports.create = async (req, res, next) => {
     } else {
         return res.status("418").send("the course already exists")  
     }
+}
+
+/* modify a course by their id*/
+exports.update = (req, res, next) => {
+
+    User.findById({_id:req.params.userid}, (err) => {
+        if (err)
+            return next(res.status("405").send("the user doesn't exists"))
+    })
+
+    Semester.findById({_id: req.params.semesterId}, (err) => {
+        if(err)
+            return res.status("408").send("the semester doesn't exists")
+    })
+
+    Course.findByIdAndUpdate({_id:req.params.courseid}, req.body, (err, course) => {
+        if (err)
+            return next(err)
+        res.send(course.nombre + " was succesfully modified")
+    })
 }

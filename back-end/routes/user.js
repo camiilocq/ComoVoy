@@ -34,7 +34,7 @@ router.get('/:userid/semesters/:semesterId', SemesterController.findbyId);
 /* POST: add a new semester, uses the body*/
 router.post('/:userid/semesters/', SemesterController.create)
 
-/* PUT: update a senester by id, uses the body*/
+/* PUT: update a semester by id, uses the body*/
 router.put('/:userid/semesters/:semesterId', SemesterController.update)
 
 /* DELETE: deletes a semester by id*/
@@ -51,5 +51,8 @@ router.get('/:userid/semesters/:semesterId/courses/:courseid', CourseController.
 
 /* POST: add a new course, uses the body*/
 router.post('/:userid/semesters/:semesterId/courses', CourseController.create)
+
+/* PUT: update a course by id, uses the body*/
+router.put('/:userid/semesters/:semesterId/courses/:courseid', CourseController.update)
 
 module.exports = router;

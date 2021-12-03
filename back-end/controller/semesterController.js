@@ -37,7 +37,6 @@ exports.create = async (req, res, next) => {
 
         if (!semesterExists){
             
-            //creates an user with the information given by the body of the post
             let semester = new Semester({
         
                 semestre : req.body.semestre,
@@ -45,7 +44,6 @@ exports.create = async (req, res, next) => {
                 promedio : req.body.promedio
             })
         
-            //saves on the db the new user
             semester.save(err => {
                 if (err)
                     return next(err)
