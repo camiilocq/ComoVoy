@@ -104,3 +104,22 @@ exports.update = (req, res, next) => {
         res.send(course.nombre + " was succesfully modified")
     })
 }
+
+/* deletes an course by their id because of a DELETE method */
+exports.delete = async (req, res, next) => {
+    User.findById({_id:req.params.userid}, (err) => {
+        if (err)
+            return next(res.status("405").send("the user doesn't exists"))
+    })
+
+    Semester.findById({_id: req.params.semesterId}, (err) => {
+        if(err)
+            return res.status("408").send("the semester doesn't exists")
+    })
+
+    Course.findByIdAndDelete({_id:req.params.courseid}, req.body, (err, course) => {
+        if (err)
+            return next(err)
+        res.send(course.nombre + " was succesfully deleted")
+    })
+}

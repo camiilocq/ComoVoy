@@ -75,7 +75,7 @@ exports.update = async (req, res, next) => {
     }
 }
 
-/* deletes an user by their id because of a DELETE method */
+/* deletes an semester by their id because of a DELETE method */
 exports.delete = async (req, res, next) => {
 
     const userExist = await User.findById({_id:req.params.userid})

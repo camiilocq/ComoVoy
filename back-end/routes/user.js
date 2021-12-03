@@ -55,4 +55,7 @@ router.post('/:userid/semesters/:semesterId/courses', CourseController.create)
 /* PUT: update a course by id, uses the body*/
 router.put('/:userid/semesters/:semesterId/courses/:courseid', CourseController.update)
 
+/* DELETE: deletes a course by id*/
+router.delete('/:userid/semesters/:semesterId/courses/:courseid', CourseController.delete)
+
 module.exports = router;
