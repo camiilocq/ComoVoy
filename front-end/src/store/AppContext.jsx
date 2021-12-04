@@ -85,7 +85,7 @@ export const AppContextWrapper = (props) => {
   const [gradesSelected, setGradeSelected] = useState([]);
 
   useEffect(() => {
-    axios.get("users").then((res) => console.log(res));
+    axios.get("/users").then((res) => console.log(res.data));
   }, []);
 
   const formatter = new Intl.NumberFormat("en-US", {
