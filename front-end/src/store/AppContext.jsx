@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
-import axios from "../config/axios";
+import React, { useState } from "react";
+//import axios from "../config/axios";
 
 const AppContext = React.createContext();
 
 export const AppContextWrapper = (props) => {
+  /*
   const mainUser = {
     id_mongo: "u1",
     nombre_completo: "Juan Puerta",
@@ -71,22 +72,19 @@ export const AppContextWrapper = (props) => {
       definitiva: 0,
     },
   ];
-
+*/
   const [selectionPage, setSelectionPage] = useState(1);
   const [showModalAddSemester, setShowModalAddSemester] = useState(false);
   const [showModalAddCourse, setShowModalAddCourse] = useState(false);
   const [showModalNotaMateria, setShowModalNotaMateria] = useState(false);
   const [restante, setRestante] = useState(0);
   const [notaParaGanar, setNotaParaGanar] = useState(0);
-  const [semesters, setSemester] = useState(mainSemester);
-  const [courses, setCousers] = useState(mainCourses);
+  const [user, setUser] = useState({});
+  const [semesters, setSemester] = useState([]);
+  const [courses, setCousers] = useState([]);
   const [semesterSelect, setSemesterSelect] = useState("");
   const [courseSelect, setCourseSelect] = useState({});
   const [gradesSelected, setGradeSelected] = useState([]);
-
-  useEffect(() => {
-    axios.get("users").then((res) => console.log(res));
-  }, []);
 
   const formatter = new Intl.NumberFormat("en-US", {
     minimumFractionDigits: 2,
@@ -94,9 +92,7 @@ export const AppContextWrapper = (props) => {
   });
 
   const filterCoursesBySemester = (id) => {
-    const semesterFilter = courses.filter(
-      (course) => course.id_mongo_semester === id
-    );
+    const semesterFilter = courses.filter((course) => course.semesterId === id);
     return semesterFilter;
   };
 
@@ -163,6 +159,9 @@ export const AppContextWrapper = (props) => {
   };
 
   const state = {
+    user,
+    setUser,
+
     selectionPage,
     setSelectionPage,
     showModalAddSemester,
@@ -187,8 +186,6 @@ export const AppContextWrapper = (props) => {
     setCousers,
     gradesSelected,
     setGradeSelected,
-
-    mainUser,
 
     filterCoursesBySemester,
     addSemester,

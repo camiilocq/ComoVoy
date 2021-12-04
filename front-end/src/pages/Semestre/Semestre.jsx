@@ -5,22 +5,23 @@ import AppContext from "../../store/AppContext";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import ModalAddSemester from "../../components/ModalAddSemester/ModalAddSemester";
 import ModalAddCourse from "../../components/ModalAddCourse/ModalAddCourse";
+import axios from "../../config/axios";
 import "./Semestre.css";
 
 const Semestre = () => {
-  const { Option } = Select;
   const state = useContext(AppContext);
+  const { Option } = Select;
 
   const colums = [
     {
       title: "Nombre",
-      dataIndex: "nombre_materia",
-      key: "nombre_materia",
+      dataIndex: "nombre",
+      key: "nombre",
     },
     {
       title: "Creditos",
-      dataIndex: "num_creditos",
-      key: "num_creditos",
+      dataIndex: "creditos",
+      key: "creditos",
     },
     {
       title: "Acciones",
@@ -46,6 +47,15 @@ const Semestre = () => {
     state.calcularPromedioSemestre();
   };
 
+  const pruebita = (value) => {
+    state.setSemesterSelect(value);
+    axios
+      .get("/users/" + state.user._id + "/semesters/" + value + "/courses")
+      .then((res) => {
+        state.setCousers(res?.data);
+      });
+  };
+
   return (
     <SectionTitle title="Información semestres">
       <div className="optionsChoose">
@@ -53,13 +63,12 @@ const Semestre = () => {
           <h3>Escoger semestre</h3>
           <Select
             value={state.semesterSelect}
-            //defaultValue={state.semesters[0].nombre_semestre}
             style={{ width: 120 }}
-            onChange={(value) => state.setSemesterSelect(value)}
+            onSelect={(value) => pruebita(value)}
           >
             {state.semesters.map((semester) => (
-              <Option value={semester.id_mongo} key={semester.id_mongo}>
-                {semester.nombre_semestre}
+              <Option value={semester._id} key={semester._id}>
+                {semester.semestre}
               </Option>
             ))}
           </Select>
@@ -80,8 +89,8 @@ const Semestre = () => {
         <Table
           size="small"
           columns={colums}
-          dataSource={state.filterCoursesBySemester(state.semesterSelect)}
-          rowKey="id_mongo"
+          dataSource={state.courses}
+          rowKey="_id"
           pagination={{ pageSize: 3 }}
         ></Table>
       </div>
