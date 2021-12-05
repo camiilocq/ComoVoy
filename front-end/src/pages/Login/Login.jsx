@@ -1,30 +1,43 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { Layout } from "antd";
 
 import { Typography } from "antd";
 import { Row, Col } from "antd";
-import { Form, Input, Button, Checkbox } from "antd";
-import { Image } from 'antd';
+import { Form, Input, Button } from "antd";
+import { Image } from "antd";
 import { GithubOutlined } from "@ant-design/icons";
+import AppContext from "../../store/AppContext";
+import axios from "../../config/axios";
 
 import "./Login.css";
 
 const { Title } = Typography;
 const { Header, Footer, Content } = Layout;
 
-
-
 const Login = () => {
+  const state = useContext(AppContext);
+
   const navigate = useNavigate();
   function toSignUp() {
     return navigate("/sign-Up");
   }
 
-  function toHome() {
+  useEffect(() => {
+    axios.get("/users/61a67cb304b864a315af9cbe").then((res) => {
+      state.setUser(res?.data);
+    });
+  }, []);
+
+  const toHome = async () => {
     //Aquí iria la autentificación para ingresar al login
+
+    await axios.get("/users/" + state.user._id + "/semesters").then((res) => {
+      state.setSemester(res?.data);
+    });
+
     return navigate("/home");
-  }
+  };
 
   return (
     <Layout className="Contener">
@@ -37,7 +50,7 @@ const Login = () => {
         <Row>
           <Col span={12}>
             <div className="images">
-            <Image src="" />
+              <Image src="" />
             </div>
           </Col>
           <Col span={12}>
@@ -49,7 +62,7 @@ const Login = () => {
               </Title>
               <div className="sigIn">
                 <Form
-                  name="basic"
+                  //name="basic"
                   labelCol={{ span: 8 }}
                   wrapperCol={{ span: 16 }}
                   initialValues={{ remember: true }}
@@ -57,7 +70,7 @@ const Login = () => {
                 >
                   <Form.Item
                     label="Username"
-                    name="username"
+                    //name="username"
                     rules={[
                       {
                         required: true,
@@ -70,7 +83,7 @@ const Login = () => {
 
                   <Form.Item
                     label="Password"
-                    name="password"
+                    //name="password"
                     rules={[
                       {
                         required: true,
@@ -84,7 +97,7 @@ const Login = () => {
                   <Form.Item>
                     <Form.Item
                       label="¿Eres nuevo? ¡Registrate!"
-                      name="sign-up"
+                      //name="sign-up"
                       onClick={toSignUp}
                     />
                   </Form.Item>
@@ -102,11 +115,12 @@ const Login = () => {
       <Footer className="information">
         <Row>
           <Col span={13}>
-            Proyecto final de la asignatura de Programación Web Avanzada, el proyecto
-            fue trabajado durante el semestre 2021-2. Su objetivo es llevar un control
-            y poder visualizar en tiempo real las calificaciones tanto de un curso
-            como de todo su periodo académico (tribunal, semestre, periodo, etc.) tiene
-            Mongo como motor de base de datos.
+            Proyecto final de la asignatura de Programación Web Avanzada, el
+            proyecto fue trabajado durante el semestre 2021-2. Su objetivo es
+            llevar un control y poder visualizar en tiempo real las
+            calificaciones tanto de un curso como de todo su periodo académico
+            (tribunal, semestre, periodo, etc.) tiene Mongo como motor de base
+            de datos.
           </Col>
           <Col span={1} />
           <Col span={5}>

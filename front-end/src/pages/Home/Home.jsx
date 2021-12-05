@@ -6,6 +6,7 @@ import Semestre from "../Semestre/Semestre";
 import Reporte from "../../pages/Reporte/Reporte";
 import CalcularNota from "../CalcularNota/CalcularNota";
 import AppContext from "../../store/AppContext";
+//import axios from "../../config/axios";
 import "./Home.css";
 
 const Home = () => {
