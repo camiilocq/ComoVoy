@@ -1,0 +1,17 @@
+.infoNotaContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.infoNota {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.botonesInfoNota {
+  display: flex;
+  gap: 10px;
+}

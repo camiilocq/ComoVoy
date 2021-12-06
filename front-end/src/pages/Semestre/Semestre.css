@@ -1,0 +1,10 @@
+.optionsChoose {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.botones {
+  display: flex;
+  gap: 10px;
+}

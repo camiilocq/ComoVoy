@@ -3,6 +3,15 @@
     
 }
 
+.Contener h1.ant-typography{
+    color: white;
+    }
+.Banner{
+
+    background-color: yellow;
+    color: white;
+    
+}
 .general{
  
     margin-top: 5%;
@@ -10,12 +19,12 @@
 }
 
 .data{
+    margin-left: 10px;
     text-align: center;
-
 }
 
-.images{
-
+.information{
+   
 }
 
 .sigIn{
@@ -30,6 +39,4 @@ p{
 }
 
 Button{
-    margin-top: 10px;
-    
 }
