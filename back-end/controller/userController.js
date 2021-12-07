@@ -11,7 +11,7 @@ exports.findAll = (req, res, next) => {
 
 /* finds a user by their id because a get method with id as a parameter*/
 exports.findbyId = (req, res, next) => {
-    User.findById({_id:req.params.userid}, (err, user) => {
+    User.findOne({id:req.params.userid}, (err, user) => {
         if (err)
             return next(res.status("405").send("the user doesn't exists"))
         res.send(user)
@@ -21,13 +21,14 @@ exports.findbyId = (req, res, next) => {
 /* creates a new user because a post method */
 exports.create = async (req, res, next) => {
  
-    const userExist = await User.findOne({correo:req.body.correo})
+    const userExist = await User.findOne({id:req.body.id})
     if (userExist)
         return res.status("409").send("the user already exists")
 
     //creates an user with the information given by the body of the post
     let user = new User({
 
+        id: req.body.id,
         nombre : req.body.nombre,
         contrasena : req.body.contrasena,
         correo : req.body.correo,
@@ -44,7 +45,7 @@ exports.create = async (req, res, next) => {
 
 /* modify an user by their id*/
 exports.update = async (req, res, next) => {
-    User.findByIdAndUpdate({_id:req.params.userid}, req.body, (err, user) => {
+    User.findOneAndUpdate({id:req.params.userid}, req.body, (err, user) => {
         if (err)
             return next(err)
         res.send(user.nombre + " was succesfully modified")
@@ -53,7 +54,7 @@ exports.update = async (req, res, next) => {
 
 /* deletes an user by their id because of a DELETE method */
 exports.delete = (req, res, next) => {
-    User.findByIdAndDelete({_id:req.params.userid}, (err, user) => {
+    User.findOneAndDelete({id:req.params.userid}, (err, user) => {
         if (err)
             return next(err)
         res.send( user.nombre +  " was eliminated succesfully")
