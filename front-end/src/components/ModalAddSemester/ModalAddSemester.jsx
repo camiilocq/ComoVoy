@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Modal, Button, DatePicker, Select } from "antd";
 import AppContext from "../../store/AppContext";
 import axios from "../../config/axios";
+import { v4 as uuidv4 } from "uuid";
 import "./ModalAddSemester.css";
 
 const ModalAddSemester = () => {
@@ -13,11 +14,12 @@ const ModalAddSemester = () => {
   const addSemester = () => {
     const date = year + "-" + semesterChoose;
     const newSemester = {
+      id: uuidv4(),
       semestre: date,
       promedio: 0,
-      userId: state.user._id,
+      userId: state.user.id,
     };
-
+    axios.post("/users/" + state.user.id + "/semesters", newSemester);
     state.addSemester(newSemester);
     state.setShowModalAddSemester(false);
   };

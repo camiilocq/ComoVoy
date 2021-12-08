@@ -24,7 +24,7 @@ const Login = () => {
   }
 
   useEffect(() => {
-    axios.get("/users/61a67cb304b864a315af9cbe").then((res) => {
+    axios.get("/users/756416").then((res) => {
       state.setUser(res?.data);
     });
   }, []);
@@ -32,8 +32,9 @@ const Login = () => {
   const toHome = async () => {
     //Aquí iria la autentificación para ingresar al login
 
-    await axios.get("/users/" + state.user._id + "/semesters").then((res) => {
+    await axios.get("/users/" + state.user.id + "/semesters").then((res) => {
       state.setSemester(res?.data);
+      //console.log(res?.data);
     });
 
     return navigate("/home");

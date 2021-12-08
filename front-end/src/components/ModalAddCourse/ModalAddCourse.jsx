@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Modal, Button, Select, Input } from "antd";
 import AppContext from "../../store/AppContext";
+import axios from "../../config/axios";
+import { v4 as uuidv4 } from "uuid";
 import "./ModalAddCourse.css";
 
 const ModalAddCourse = () => {
@@ -11,12 +13,21 @@ const ModalAddCourse = () => {
 
   const addCourse = () => {
     const newCourse = {
-      id_mongo: nameCourse,
-      nombre_materia: nameCourse,
-      num_creditos: numCredits,
+      id: uuidv4(),
+      definitiva: 0,
+      semesterId: state.semesterSelect,
+      nombre: nameCourse,
+      creditos: numCredits,
       notas: [],
-      id_mongo_semester: state.semesterSelect,
     };
+    axios.post(
+      "/users/" +
+        state.user.id +
+        "/semesters/" +
+        state.semesterSelect +
+        "/courses",
+      newCourse
+    );
     state.addCourse(newCourse);
     state.setShowModalAddCourse(false);
   };

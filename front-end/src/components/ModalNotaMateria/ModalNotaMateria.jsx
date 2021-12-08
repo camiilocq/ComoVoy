@@ -28,7 +28,7 @@ const ModalNotaMateria = () => {
       ]}
     >
       <div>
-        Tu nota de {state.courseSelect.nombre_materia} es de:{" "}
+        Tu nota de {state.courseSelect.nombre} es de:{" "}
         {state.courseSelect.definitiva}
       </div>
       {state.courseSelect.definitiva >= 3 ? (

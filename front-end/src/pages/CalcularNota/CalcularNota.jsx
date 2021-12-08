@@ -12,13 +12,13 @@ const CalcularNota = () => {
   const colums = [
     {
       title: "Nombre",
-      dataIndex: "nombre_nota",
-      key: "nombre_nota",
+      dataIndex: "nota",
+      key: "nota",
     },
     {
-      title: "Pocentaje",
-      dataIndex: "pocentaje",
-      key: "pocentaje",
+      title: "Porcentaje",
+      dataIndex: "porcentaje",
+      key: "porcentaje",
     },
     {
       title: "Calificación",
@@ -42,20 +42,18 @@ const CalcularNota = () => {
   ];
 
   const deleteGrade = (record) => {
-    state.deleteGrade(record.nombre_nota);
+    state.deleteGrade(record.nota);
   };
 
   return (
-    <SectionTitle
-      title={"Calcular nota de: " + state.courseSelect.nombre_materia}
-    >
+    <SectionTitle title={"Calcular nota de: " + state.courseSelect.nombre}>
       <InfoCourse />
       <hr />
       <Table
         size="small"
         columns={colums}
         dataSource={state.gradesSelected}
-        rowKey="nombre_nota"
+        rowKey="nota"
         pagination={{ pageSize: 4 }}
       />
     </SectionTitle>

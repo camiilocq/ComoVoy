@@ -13,8 +13,8 @@ const InfoNota = () => {
 
   const addNota = () => {
     const newNota = {
-      nombre_nota: nombre,
-      pocentaje: porcentaje / 100,
+      nota: nombre,
+      porcentaje: porcentaje / 100,
       calificacion: nota,
     };
     state.addNota(newNota);

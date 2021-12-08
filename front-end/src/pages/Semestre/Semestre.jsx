@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
-import { Select, Table, Button } from "antd";
-import { CalculatorOutlined } from "@ant-design/icons";
+import { Select, Table, Button, Space } from "antd";
+import { CalculatorOutlined, DeleteOutlined } from "@ant-design/icons";
 import AppContext from "../../store/AppContext";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import ModalAddSemester from "../../components/ModalAddSemester/ModalAddSemester";
 import ModalAddCourse from "../../components/ModalAddCourse/ModalAddCourse";
+import ModalPromedioSemestre from "../../components/ModalPromedioSemestre/ModalPromedioSemestre";
 import axios from "../../config/axios";
 import "./Semestre.css";
 
@@ -27,33 +28,55 @@ const Semestre = () => {
       title: "Acciones",
       key: "action",
       render: (text, record) => (
-        <Button
-          type="primary"
-          size="large"
-          icon={<CalculatorOutlined />}
-          onClick={() => calculateGrade(record)}
-        ></Button>
+        <Space size="middle">
+          <Button
+            type="primary"
+            size="large"
+            icon={<CalculatorOutlined />}
+            onClick={() => calculateGrade(record)}
+          ></Button>
+          <Button
+            type="primary"
+            size="large"
+            icon={<DeleteOutlined />}
+            onClick={() => deleteCourse(record)}
+            danger
+            ghost
+          ></Button>
+        </Space>
       ),
     },
   ];
 
   const calculateGrade = (record) => {
-    state.setCourseSelect(record);
-    state.setGradeSelected(record.notas);
+    axios
+      .get(
+        "/users/" +
+          state.user.id +
+          "/semesters/" +
+          state.semesterSelect +
+          "/courses/" +
+          record.id
+      )
+      .then((res) => {
+        state.setCourseSelect(res.data);
+        state.setGradeSelected(res.data.notas);
+      });
     state.setSelectionPage(3);
   };
 
-  const calcularPromedioSemestre = () => {
-    state.calcularPromedioSemestre();
-  };
-
   const pruebita = (value) => {
+    //state.setPromedioPonderado(state.calcularPromedioPonderado());
     state.setSemesterSelect(value);
     axios
-      .get("/users/" + state.user._id + "/semesters/" + value + "/courses")
+      .get("/users/" + state.user.id + "/semesters/" + value + "/courses")
       .then((res) => {
         state.setCousers(res?.data);
       });
+  };
+
+  const deleteCourse = (record) => {
+    state.deleteCourse(record.id);
   };
 
   return (
@@ -67,14 +90,16 @@ const Semestre = () => {
             onSelect={(value) => pruebita(value)}
           >
             {state.semesters.map((semester) => (
-              <Option value={semester._id} key={semester._id}>
+              <Option value={semester.id} key={semester.id}>
                 {semester.semestre}
               </Option>
             ))}
           </Select>
         </div>
         <div className="botones">
-          <Button onClick={calcularPromedioSemestre}>Ver promedio</Button>
+          <Button onClick={() => state.setShowModalPromedioSemestre(true)}>
+            Ver promedio
+          </Button>
           <Button onClick={() => state.setShowModalAddSemester(true)}>
             Agregar semestre
           </Button>
@@ -90,12 +115,13 @@ const Semestre = () => {
           size="small"
           columns={colums}
           dataSource={state.courses}
-          rowKey="_id"
+          rowKey="id"
           pagination={{ pageSize: 3 }}
         ></Table>
       </div>
       <ModalAddSemester />
       <ModalAddCourse />
+      <ModalPromedioSemestre />
     </SectionTitle>
   );
 };
