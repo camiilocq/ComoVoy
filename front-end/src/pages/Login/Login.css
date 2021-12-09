@@ -1,42 +1,75 @@
-.carousel{
-    width: 50%;
-    
+.containerLogin {
+  height: 100%;
+  padding: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
 }
 
-.Contener h1.ant-typography{
-    color: white;
-    }
-.Banner{
-
-    background-color: yellow;
-    color: white;
-    
-}
-.general{
- 
-    margin-top: 5%;
-    margin-left: 5%;
+.nombreApp {
+  color: white;
 }
 
-.data{
-    margin-left: 10px;
-    text-align: center;
+.carousel {
+  width: 50%;
 }
 
-.information{
-   
+.Contener h1.ant-typography {
+  color: white;
+}
+.Banner {
+  background-color: yellow;
+  color: white;
 }
 
-.sigIn{
-    margin-left: 10%;
-    text-align: left;
-    width: 70%;
+.imagen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-p{
-    margin-top: 5px;
-    margin-bottom: -2px;
+.formulario {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
-Button{
+.ant-alert-error {
+  width: 100%;
+}
+
+.infoFormulario {
+  padding: 20px;
+  width: 100%;
+}
+
+.textoInfo {
+  text-align: center;
+}
+
+.inputInfoUser {
+  width: 100%;
+}
+
+.botonesLogin {
+  display: flex;
+  flex-direction: column;
+}
+
+.data {
+  margin-left: 10px;
+  text-align: center;
+}
+
+.sigIn {
+  text-align: left;
+}
+
+p {
+  margin-top: 5px;
+  margin-bottom: -2px;
 }

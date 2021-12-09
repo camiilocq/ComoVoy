@@ -1,0 +1,10 @@
+.botonesIntegrantes {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  gap: 5px;
+}
+
+.botonIntegrante {
+  max-width: 150px;
+}

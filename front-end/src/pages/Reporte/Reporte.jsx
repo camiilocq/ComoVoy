@@ -8,14 +8,15 @@ import "./Reporte.css";
 
 const Reporte = () => {
   const state = useContext(AppContext);
+
   useEffect(() => {
     axios.get("/users/" + state.user.id + "/semesters").then((res) => {
       state.setSemester(res?.data);
-      //console.log(state.arregloNombreDeSemestres());
     });
   }, []);
+
   return (
-    <SectionTitle title="Resporte">
+    <SectionTitle title="Resportes">
       <div>
         Tu promedio ponderado es de: {state.calcularPromedioPonderado()}
       </div>

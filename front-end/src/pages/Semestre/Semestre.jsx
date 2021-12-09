@@ -62,7 +62,7 @@ const Semestre = () => {
         state.setCourseSelect(res.data);
         state.setGradeSelected(res.data.notas);
       });
-    state.setSelectionPage(3);
+    state.setSelectionPage(4);
   };
 
   const pruebita = (value) => {

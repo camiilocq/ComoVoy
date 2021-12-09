@@ -1,9 +1,16 @@
-.data{
-    margin-top: 5%;
-    margin-right: 20%;
-    height: 100%;
+.data {
+  height: 100%;
+  padding: 5%;
 }
-.title h1.ant-typography{
-    color: white;
-    }
+.title h1.ant-typography {
+  color: white;
+}
 
+.terminosCondiciones {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}

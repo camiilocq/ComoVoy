@@ -4,84 +4,16 @@ import axios from "../config/axios";
 const AppContext = React.createContext();
 
 export const AppContextWrapper = (props) => {
-  /*
-  const mainUser = {
-    id_mongo: "u1",
-    nombre_completo: "Juan Puerta",
-    correo: "juan@gmail.com",
-    promedio_ponderado: 0,
-    contraseña: "juan123",
-    institucion: "ICESI University",
-  };
-
-  const mainSemester = [
-    {
-      id_mongo: "s1",
-      nombre_semestre: "2021-02",
-      promedio: 0,
-      id_mongo_user: "u1",
-    },
-    {
-      id_mongo: "s2",
-      nombre_semestre: "2022-01",
-      promedio: 0,
-      id_mongo_user: "u1",
-    },
-  ];
-
-  const mainCourses = [
-    {
-      id_mongo: "n1",
-      nombre_materia: "Álgebra lineal",
-      num_creditos: 3,
-      notas: [
-        {
-          nombre_nota: "Laboratorios",
-          pocentaje: 0.2,
-          calificacion: 4,
-        },
-        {
-          nombre_nota: "Proyecto final",
-          pocentaje: 0.4,
-          calificacion: 4.5,
-        },
-      ],
-      id_mongo_semester: "s1",
-      definitiva: 0,
-    },
-    {
-      id_mongo: "n2",
-      nombre_materia: "COE I",
-      num_creditos: 2,
-      notas: [
-        {
-          nombre_nota: "Escrito I",
-          pocentaje: 0.3,
-          calificacion: 3.7,
-        },
-      ],
-      id_mongo_semester: "s1",
-      definitiva: 0,
-    },
-    {
-      id_mongo: "n3",
-      nombre_materia: "Matemáticas discretas",
-      num_creditos: 4,
-      notas: [],
-      id_mongo_semester: "s2",
-      definitiva: 0,
-    },
-  ];
-*/
   const [selectionPage, setSelectionPage] = useState(1);
   const [showModalAddSemester, setShowModalAddSemester] = useState(false);
   const [showModalAddCourse, setShowModalAddCourse] = useState(false);
   const [showModalNotaMateria, setShowModalNotaMateria] = useState(false);
   const [showModalPromedioSemestre, setShowModalPromedioSemestre] =
     useState(false);
+  const [showModalTerminosCondiciones, setModalTerminosCondiciones] =
+    useState(false);
   const [restante, setRestante] = useState(0);
   const [notaParaGanar, setNotaParaGanar] = useState(0);
-  //const [promedioPonderado, setPromedioPonderado] = useState(0);
   const [user, setUser] = useState({});
   const [semesters, setSemester] = useState([]);
   const [courses, setCousers] = useState([]);
@@ -241,13 +173,13 @@ export const AppContextWrapper = (props) => {
     setShowModalNotaMateria,
     showModalPromedioSemestre,
     setShowModalPromedioSemestre,
+    showModalTerminosCondiciones,
+    setModalTerminosCondiciones,
 
     restante,
     setRestante,
     notaParaGanar,
     setNotaParaGanar,
-    //promedioPonderado,
-    //setPromedioPonderado,
 
     semesterSelect,
     setSemesterSelect,
@@ -270,7 +202,6 @@ export const AppContextWrapper = (props) => {
     calcularNotaCurso,
     arregloNombreDeSemestres,
     arregloMateriasDelSemestre,
-    // arregloNotasSemestres,
   };
 
   return (
