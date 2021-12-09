@@ -5,8 +5,8 @@ import TabHeader from "../../components/TabHeader/TabHeader";
 import Semestre from "../Semestre/Semestre";
 import Reporte from "../../pages/Reporte/Reporte";
 import CalcularNota from "../CalcularNota/CalcularNota";
+import InfoWorkers from "../InfoWorkers/InfoWorkers";
 import AppContext from "../../store/AppContext";
-//import axios from "../../config/axios";
 import "./Home.css";
 
 const Home = () => {
@@ -47,6 +47,8 @@ const Home = () => {
                 <Semestre />
               ) : state.selectionPage === 2 ? (
                 <Reporte />
+              ) : state.selectionPage === 3 ? (
+                <InfoWorkers />
               ) : (
                 <CalcularNota />
               )}

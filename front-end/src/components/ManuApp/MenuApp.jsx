@@ -1,6 +1,10 @@
 import React, { useContext } from "react";
 import { Menu } from "antd";
-import { DesktopOutlined } from "@ant-design/icons";
+import {
+  InfoCircleOutlined,
+  FileDoneOutlined,
+  BarChartOutlined,
+} from "@ant-design/icons";
 import AppContext from "../../store/AppContext";
 import "./MenuApp.css";
 
@@ -17,18 +21,26 @@ const MenuApp = () => {
       <Menu.Item
         className="menuApp"
         key="1"
-        icon={<DesktopOutlined />}
+        icon={<FileDoneOutlined />}
         onClick={() => state.setSelectionPage(1)}
       >
-        Semestre
+        Semestres
       </Menu.Item>
       <Menu.Item
         className="menuApp"
         key="2"
-        icon={<DesktopOutlined />}
+        icon={<BarChartOutlined />}
         onClick={() => state.setSelectionPage(2)}
       >
-        Reporte
+        Reportes
+      </Menu.Item>
+      <Menu.Item
+        className="menuApp"
+        key="3"
+        icon={<InfoCircleOutlined />}
+        onClick={() => state.setSelectionPage(3)}
+      >
+        Más información
       </Menu.Item>
     </Menu>
   );

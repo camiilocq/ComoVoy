@@ -14,12 +14,12 @@ exports.findAll = (req, res, next) => {
 /* finds a the semester of an user by their id because a get method with id as a parameter*/
 exports.findbyId = (req, res, next) => {
 
-    User.findById({_id:req.params.userid}, (err) => {
+    User.findOne({id:req.params.userid}, (err) => {
         if (err)
             return next(res.status("405").send("the user doesn't exists"))
     })
 
-    Semester.findById({_id:req.params.semesterId}, (err, semester) => {
+    Semester.findOne({id:req.params.semesterId}, (err, semester) => {
         if (err)
             return next(res.status("405").send("the semester doesn't exists"))
         res.send(semester)
@@ -28,64 +28,60 @@ exports.findbyId = (req, res, next) => {
 
 /* creates a new semester because a post method */
 exports.create = async (req, res, next) => {
- 
-    const userExist = await User.findById({_id:req.params.userid})
+
+    User.findOne({id:req.params.userid}, (err) => {
+        if (err)
+            return next(res.status("405").send("the user doesn't exists"))
+    })
+
+    const semesterExists = await Semester.findOne({id:req.body.id})
+
+    if (!semesterExists){
+        
+        let semester = new Semester({
     
-    if (userExist){
-
-        const semesterExists = await Semester.findOne({semestre:req.body.semestre})
-
-        if (!semesterExists){
-            
-            let semester = new Semester({
-        
-                semestre : req.body.semestre,
-                userId : req.body.userId,
-                promedio : req.body.promedio
-            })
-        
-            semester.save(err => {
-                if (err)
-                    return next(err)
-                res.send("Semester created succesfully")
-            })
-        } else {
-            return res.status("417").send("the semester already exists")
-        }
+            id: req.body.id,
+            semestre : req.body.semestre,
+            userId : req.body.userId,
+            promedio : req.body.promedio
+        })
+    
+        semester.save(err => {
+            if (err)
+                return next(err)
+            res.send("Semester created succesfully")
+        })
     } else {
-        return res.status("409").send("the user doesn't exists")
+        return res.status("417").send("the semester already exists")
     }
 }
 
 /* modify a semester by their id*/
 exports.update = async (req, res, next) => {
 
-    const userExist = await User.findById({_id:req.params.userid})
-    
-    if (userExist){
+    User.findOne({id:req.params.userid}, (err) => {
+        if (err)
+            return next(res.status("405").send("the user doesn't exists"))
+    })
 
-        Semester.findByIdAndUpdate({_id:req.params.semesterId}, req.body, (err, semester) => {
-            if (err)
-                return next(err)
-            res.send(semester.semestre + " was succesfully modified")
-        })
-
-    } else {
-        return res.status("409").send("the user doesn't exists")
-    }
+    Semester.findOneAndUpdate({id:req.params.semesterId}, req.body, (err, semester) => {
+        if (err)
+            return next(err)
+        res.send(semester.semestre + " was succesfully modified")
+    })
 }
 
 /* deletes an semester by their id because of a DELETE method */
 exports.delete = async (req, res, next) => {
 
-    const userExist = await User.findById({_id:req.params.userid})
-    
-    if (userExist){
+    User.findOne({id:req.params.userid}, (err) => {
+        if (err)
+            return next(res.status("405").send("the user doesn't exists"))
+    })
 
-        Semester.findByIdAndDelete({_id:req.params.semesterId}, (err, semester) => {
-            if (err)
-                return next(err)
-            res.send( semester.semestre +  " was eliminated succesfully")
-        })
-    }
+    Semester.findOneAndDelete({id:req.params.semesterId}, (err, semester) => {
+        if (err)
+            return next(err)
+        res.send( semester.semestre +  " was eliminated succesfully")
+    })
 }
