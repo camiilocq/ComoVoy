@@ -77,6 +77,7 @@ const Login = () => {
                 ]}
               >
                 <Input
+                  id="mail"
                   value={correoUser}
                   onChange={(event) => setCorreoUser(event.target.value)}
                 />
@@ -92,15 +93,21 @@ const Login = () => {
                 ]}
               >
                 <Input.Password
+                  id="password"
                   value={passwordUser}
                   onChange={(event) => setPasswordUser(event.target.value)}
                 />
               </Form.Item>
               <div className="botonesLogin">
-                <Button type="primary" htmlType="submit" onClick={toHome}>
+                <Button
+                  id="btn-logIn"
+                  type="primary"
+                  htmlType="submit"
+                  onClick={toHome}
+                >
                   Ingresar
                 </Button>
-                <Button type="link" onClick={toSignUp}>
+                <Button id="btn-register" type="link" onClick={toSignUp}>
                   ¿Eres nuevo? ¡Registrate!
                 </Button>
               </div>

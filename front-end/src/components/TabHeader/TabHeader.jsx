@@ -21,7 +21,7 @@ const TabHeader = () => {
 
   return (
     <div className="tabHeader">
-      <div>{state.user?.nombre}</div>
+      <div id="user">{state.user?.nombre}</div>
       <h1 className="nombreLogo">Cómo Voy</h1>
       <div>
         <Button
