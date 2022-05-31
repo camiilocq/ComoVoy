@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test:integration:db": "jest -c test/integration/jest.integration.config.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -13,6 +14,8 @@
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "mongoose": "^6.0.14",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "jest": "^26.6.3",
+    "jest-dom": "^4.0.0"
   }
 }
