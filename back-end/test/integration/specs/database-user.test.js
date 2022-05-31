@@ -1,8 +1,8 @@
 //Import the UserController
-const UserController = require("../controller/userController");
+const UserController = require("../../../controller/userController");
 
 //Import the User schema
-const User = require("../models/user");
+const User = require("../../../models/user");
 
 describe('Database Integration Test', () => {
 
@@ -20,7 +20,8 @@ describe('Database Integration Test', () => {
                 correo: "user@user.com",
                 promedioPonderado: 0.0,
                 institucion: "institution"
-            })
+            });
+            console.log(user);
         });
     });
 });
