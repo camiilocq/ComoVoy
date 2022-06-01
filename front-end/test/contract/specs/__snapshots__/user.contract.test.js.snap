@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`User Service When a request to add an user is made should notify an user is added 1`] = `"Created String"`;
+
+exports[`User Service When a request to add an user is made should return the correct data 1`] = `"Created String"`;
+
+exports[`User Service When a request to delete an user is made should notify the user deletion 1`] = `"Deleted String"`;
+
+exports[`User Service When a request to list all users is made should return the correct data 1`] = `
+Array [
+  Object {
+    "contrasena": "contrasena",
+    "correo": "correo@correo.com",
+    "id": "id",
+    "institucion": "institucion",
+    "nombre": "nombre",
+    "promedioPonderado": 13.01,
+  },
+]
+`;
+
+exports[`User Service When a request to list all users is made should return the users list 1`] = `
+Array [
+  Object {
+    "contrasena": "contrasena",
+    "correo": "correo@correo.com",
+    "id": "id",
+    "institucion": "institucion",
+    "nombre": "nombre",
+    "promedioPonderado": 13.01,
+  },
+]
+`;
+
+exports[`User Service When a request to list an user is made should return the asked user 1`] = `
+Object {
+  "contrasena": "contrasena",
+  "correo": "correo@correo.com",
+  "id": "id",
+  "institucion": "institucion",
+  "nombre": "nombre",
+  "promedioPonderado": 13.01,
+}
+`;
+
+exports[`User Service When a request to list an user is made should return the correct data 1`] = `
+Object {
+  "contrasena": "contrasena",
+  "correo": "correo@correo.com",
+  "id": "id",
+  "institucion": "institucion",
+  "nombre": "nombre",
+  "promedioPonderado": 13.01,
+}
+`;
+
+exports[`User Service When a request to login is made should return an user 1`] = `
+Object {
+  "contrasena": "contrasena",
+  "correo": "correo@correo.com",
+  "id": "id",
+  "institucion": "institucion",
+  "nombre": "nombre",
+  "promedioPonderado": 13.01,
+}
+`;
+
+exports[`User Service When a request to update an user is made should notify an user is updated 1`] = `"Updated String"`;
+
+exports[`User Service When a request to update an user is made should return the correct data 1`] = `"Updated String"`;
