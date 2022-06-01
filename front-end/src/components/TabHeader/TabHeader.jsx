@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Modal, Button, Input } from "antd";
 import { ImportOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,8 @@ import "./TabHeader.css";
 
 const TabHeader = () => {
   const state = useContext(AppContext);
+
+  const [userName, setUserName] = useState("");
 
   const [visible, setVisible] = useState(false);
   const [newName, setNewName] = useState("");
@@ -45,10 +47,16 @@ const TabHeader = () => {
     navigate("/");
   };
 
+  //state.user?.nombre
+
+  useEffect(() => {
+    setUserName(state.user.nombre);
+  }, [state.user]);
+
   return (
     <div className="tabHeader">
       <Button id="btn-user" type="link" onClick={handleOpen}>
-        {state.user?.nombre}
+        {userName}
       </Button>
       <Modal
         title="Update Data"
@@ -61,6 +69,7 @@ const TabHeader = () => {
             key="submit"
             type="primary"
             onClick={handleUpdate}
+            disabled={newName.length === 0 ? true : false}
           >
             Update User
           </Button>,

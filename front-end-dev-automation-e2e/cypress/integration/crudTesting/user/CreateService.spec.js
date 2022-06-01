@@ -27,6 +27,7 @@ describe("Given I want to create a new user", () => {
     cy.contains(user.name).should("exist");
   });
   after(() => {
-    //delete
+    cy.get("#btn-user").click();
+    cy.get("#delete").click();
   });
 });

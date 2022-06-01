@@ -55,7 +55,7 @@ const Login = () => {
         <div className="containerLogin">
           <div className="imagen">
             <div>
-              <Image width={500} src={logo} alt="logo" />
+              <Image id="image" width={500} src={logo} alt="logo" />
             </div>
           </div>
           <div className="formulario">
