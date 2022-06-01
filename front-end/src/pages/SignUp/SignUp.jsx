@@ -78,6 +78,7 @@ const SignUp = () => {
                 rules={[{ required: true }]}
               >
                 <Input
+                  id="name"
                   value={nombreUser}
                   onChange={(event) => setNombreUser(event.target.value)}
                 />
@@ -88,6 +89,7 @@ const SignUp = () => {
                 rules={[{ required: true, type: "email" }]}
               >
                 <Input
+                  id="mail"
                   value={correoUser}
                   onChange={(event) => setCorreoUser(event.target.value)}
                 />
@@ -103,7 +105,7 @@ const SignUp = () => {
                 ]}
                 hasFeedback
               >
-                <Input.Password />
+                <Input.Password id="password" />
               </Form.Item>
 
               <Form.Item
@@ -129,12 +131,14 @@ const SignUp = () => {
                 ]}
               >
                 <Input.Password
+                  id="confirmPSW"
                   value={passwordUser}
                   onChange={(event) => setPasswordUser(event.target.value)}
                 />
               </Form.Item>
               <Form.Item name={["user", "institution"]} label="Institucion">
                 <Input
+                  id="institution"
                   value={instirucionUser}
                   onChange={(event) => setInstitucionUser(event.target.value)}
                 />
@@ -147,10 +151,11 @@ const SignUp = () => {
               >
                 Ver términos y condiciones
               </Button>
-              <Checkbox onChange={onChange}>
+              <Checkbox id="conditions" onChange={onChange}>
                 He leído y acepto los términos y condiciones.
               </Checkbox>
               <Button
+                id="register"
                 type="primary"
                 htmlType="submit"
                 disabled={!terminosAceptados}
