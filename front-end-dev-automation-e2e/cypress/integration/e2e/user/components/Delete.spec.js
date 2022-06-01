@@ -1,7 +1,7 @@
 const uri = "localhost:3001/";
-import user from "../../../fixtures/user.json";
+import user from "../../../../fixtures/user.json";
 
-describe("Given I want to create a new user", () => {
+describe("Given I want to update", () => {
   before(() => {
     //arrange
     cy.visit(uri);
@@ -13,7 +13,6 @@ describe("Given I want to create a new user", () => {
     cy.get("#confirmPSW").click().type(`${user.password}`);
     cy.get("#institution").click().type(`${user.institution}`);
     cy.get("#conditions").click();
-
     cy.get("#register").click();
 
     cy.get("#mail").click().type(`${user.mail}`);
@@ -21,12 +20,16 @@ describe("Given I want to create a new user", () => {
     cy.get("#btn-logIn").click();
   });
 
-  it("Delete happy path", () => {
+  it("Render test the update view", () => {
     //Act
     cy.get("#btn-user").click();
-    cy.get("#delete").click();
 
     //assert
-    cy.get("#image").should("exist");
+    cy.get("#newName").should("exist");
+    cy.get("#update").should("be.disabled");
+    cy.get("#delete").should("be.enabled");
+  });
+  after(() => {
+    cy.get("#delete").click();
   });
 });

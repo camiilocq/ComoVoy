@@ -1,5 +1,5 @@
 const uri = "localhost:3001/";
-import user from "../../../fixtures/user.json";
+import user from "../../../../fixtures/user.json";
 
 describe("Given I want to create a new user", () => {
   before(() => {
