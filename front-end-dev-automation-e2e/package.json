@@ -1,0 +1,22 @@
+{
+  "name": "front-end-automation-dev-automation-e2e",
+  "version": "1.0.0",
+  "description": "e2e automated testing",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZornStolz/ComoVoy_QA.git"
+  },
+  "author": "zornStolz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ZornStolz/ComoVoy_QA/issues"
+  },
+  "homepage": "https://github.com/ZornStolz/ComoVoy_QA#readme",
+  "dependencies": {
+    "cypress": "^9.7.0"
+  }
+}

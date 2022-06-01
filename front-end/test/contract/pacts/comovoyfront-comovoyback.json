@@ -1,0 +1,267 @@
+{
+  "consumer": {
+    "name": "ComoVoyFront"
+  },
+  "provider": {
+    "name": "ComoVoyBack"
+  },
+  "interactions": [
+    {
+      "description": "a request to list all users",
+      "providerState": "has users",
+      "request": {
+        "method": "GET",
+        "path": "/users/"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": [
+          {
+            "id": "id",
+            "nombre": "nombre",
+            "contrasena": "contrasena",
+            "correo": "correo@correo.com",
+            "promedioPonderado": 13.01,
+            "institucion": "institucion"
+          }
+        ],
+        "matchingRules": {
+          "$.body": {
+            "min": 1
+          },
+          "$.body[*].*": {
+            "match": "type"
+          },
+          "$.body[*].id": {
+            "match": "type"
+          },
+          "$.body[*].nombre": {
+            "match": "type"
+          },
+          "$.body[*].contrasena": {
+            "match": "type"
+          },
+          "$.body[*].correo": {
+            "match": "type"
+          },
+          "$.body[*].promedioPonderado": {
+            "match": "type"
+          },
+          "$.body[*].institucion": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "a request to list an user",
+      "providerState": "has users",
+      "request": {
+        "method": "GET",
+        "path": "/users/id"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": {
+          "id": "id",
+          "nombre": "nombre",
+          "contrasena": "contrasena",
+          "correo": "correo@correo.com",
+          "promedioPonderado": 13.01,
+          "institucion": "institucion"
+        },
+        "matchingRules": {
+          "$.body.id": {
+            "match": "type"
+          },
+          "$.body.nombre": {
+            "match": "type"
+          },
+          "$.body.contrasena": {
+            "match": "type"
+          },
+          "$.body.correo": {
+            "match": "type"
+          },
+          "$.body.promedioPonderado": {
+            "match": "type"
+          },
+          "$.body.institucion": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "a request to login",
+      "providerState": "has users",
+      "request": {
+        "method": "POST",
+        "path": "/users/login",
+        "body": {
+          "correo": "correo@correo.com",
+          "contrasena": "contrasena"
+        },
+        "matchingRules": {
+          "$.body.correo": {
+            "match": "type"
+          },
+          "$.body.contrasena": {
+            "match": "type"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": {
+          "id": "id",
+          "nombre": "nombre",
+          "contrasena": "contrasena",
+          "correo": "correo@correo.com",
+          "promedioPonderado": 13.01,
+          "institucion": "institucion"
+        },
+        "matchingRules": {
+          "$.body.id": {
+            "match": "type"
+          },
+          "$.body.nombre": {
+            "match": "type"
+          },
+          "$.body.contrasena": {
+            "match": "type"
+          },
+          "$.body.correo": {
+            "match": "type"
+          },
+          "$.body.promedioPonderado": {
+            "match": "type"
+          },
+          "$.body.institucion": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "a request to add an user",
+      "providerState": "has users",
+      "request": {
+        "method": "POST",
+        "path": "/users/",
+        "body": {
+          "nombre": "nombre",
+          "contrasena": "contrasena",
+          "correo": "correo@correo.com",
+          "promedioPonderado": 13.01,
+          "institucion": "institucion"
+        },
+        "matchingRules": {
+          "$.body.nombre": {
+            "match": "type"
+          },
+          "$.body.contrasena": {
+            "match": "type"
+          },
+          "$.body.correo": {
+            "match": "type"
+          },
+          "$.body.promedioPonderado": {
+            "match": "type"
+          },
+          "$.body.institucion": {
+            "match": "type"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": "Created String",
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "a request to update an user",
+      "providerState": "has users",
+      "request": {
+        "method": "PUT",
+        "path": "/users/id",
+        "body": {
+          "id": "id",
+          "nombre": "nombre",
+          "contrasena": "contrasena",
+          "correo": "correo@correo.com",
+          "promedioPonderado": 13.01,
+          "institucion": "institucion"
+        },
+        "matchingRules": {
+          "$.body.id": {
+            "match": "type"
+          },
+          "$.body.nombre": {
+            "match": "type"
+          },
+          "$.body.contrasena": {
+            "match": "type"
+          },
+          "$.body.correo": {
+            "match": "type"
+          },
+          "$.body.promedioPonderado": {
+            "match": "type"
+          },
+          "$.body.institucion": {
+            "match": "type"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": "Updated String",
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "a request to delete an user",
+      "providerState": "has users",
+      "request": {
+        "method": "DELETE",
+        "path": "/users/id"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": "Deleted String",
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}
